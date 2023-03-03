@@ -5,7 +5,7 @@ async function insertAnimal(animal) {
   try {
     const sql =
       'INSERT INTO animais (nome, tipo, proprietario_id) VALUES ($1, $2, $3) RETURNING *';
-    const values = [animal.nome, animal.telefone, animal.proprietario_id];
+    const values = [animal.nome, animal.tipo, animal.proprietario_id];
     const res = await conn.query(sql, values);
     return res.rows[0];
   } catch (err) {
