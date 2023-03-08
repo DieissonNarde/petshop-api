@@ -16,7 +16,7 @@ async function createAnimal(req, res, next) {
 
 async function getAnimais(req, res, next) {
   try {
-    res.send(await AnimalService.getAnimais());
+    res.send(await AnimalService.getAnimais(req.query.proprietario_id));
     logger.info('GET /animal');
   } catch (err) {
     next(err);
@@ -26,17 +26,6 @@ async function getAnimais(req, res, next) {
 async function getAnimal(req, res, next) {
   try {
     res.send(await AnimalService.getAnimal(req.params.id));
-    logger.info('GET /animal');
-  } catch (err) {
-    next(err);
-  }
-}
-
-async function getAnimaisPorProprietario(req, res, next) {
-  try {
-    res.send(
-      await AnimalService.getAnimaisPorProprietario(req.params.proprietario_id)
-    );
     logger.info('GET /animal');
   } catch (err) {
     next(err);
@@ -75,7 +64,6 @@ async function updateAnimal(req, res, next) {
 export default {
   createAnimal,
   getAnimais,
-  getAnimaisPorProprietario,
   getAnimal,
   deleteAnimal,
   updateAnimal,

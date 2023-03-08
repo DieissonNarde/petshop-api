@@ -4,16 +4,15 @@ async function createAnimal(animal) {
   return await AnimalRepository.insertAnimal(animal);
 }
 
-async function getAnimais() {
+async function getAnimais(proprietario_id) {
+  if (proprietario_id) {
+    return await AnimalRepository.getAnimaisPorProprietario(proprietario_id);
+  }
   return await AnimalRepository.getAnimais();
 }
 
 async function getAnimal(id) {
   return await AnimalRepository.getAnimal(id);
-}
-
-async function getAnimaisPorProprietario(proprietario_id) {
-  return await AnimalRepository.getAnimaisPorProprietario(proprietario_id);
 }
 
 async function deleteAnimal(id) {
@@ -27,7 +26,6 @@ async function updateAnimal(animal) {
 export default {
   createAnimal,
   getAnimais,
-  getAnimaisPorProprietario,
   getAnimal,
   deleteAnimal,
   updateAnimal,
