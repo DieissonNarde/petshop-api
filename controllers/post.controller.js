@@ -1,11 +1,13 @@
+import PostService from '../services/post.service.js';
+
 async function createPost(req, res, next) {
   try {
     let post = req.body;
 
-    if (!post.postId) {
-      throw new Error('Post ID é obrigatório.');
+    if (!post.titulo || !post.conteudo || !post.comentarios) {
+      throw new Error('Titulo, Conteúdo e Comentarios é obrigatório.');
     }
-    await PostService.createPostInfo(post);
+    await PostService.createPost(post);
     res.end();
     logger.info(`POST /post - ${JSON.stringify(post)}`);
   } catch (err) {
@@ -26,8 +28,8 @@ async function updatePost(req, res, next) {
   try {
     let post = req.body;
 
-    if (!post.postId) {
-      throw new Error('Post ID é obrigatório.');
+    if (!post.postId || !post.titulo || !post.conteudo || !post.comentarios) {
+      throw new Error('Post ID, Titulo, Conteudo e Comentarios é obrigatório.');
     }
     await PostService.updatePost(post);
     res.end();
@@ -46,9 +48,25 @@ async function deletePost(req, res, next) {
   }
 }
 
+async function createComentario(req, res, next) {
+  try {
+    let post = req.body;
+
+    if (!post.postId) {
+      throw new Error('Post ID é obrigatório.');
+    }
+    await PostService.createPost(post);
+    res.end();
+    logger.info(`POST /post - ${JSON.stringify(post)}`);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export default {
   createPost,
   getPosts,
   deletePost,
   updatePost,
+  createComentario,
 };
