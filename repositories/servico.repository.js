@@ -9,7 +9,7 @@ async function insertServico(servico) {
   }
 }
 
-async function getAnimais() {
+async function getServicos() {
   try {
     return await Servico.findAll();
   } catch (err) {
@@ -25,17 +25,13 @@ async function getServico(id) {
   }
 }
 
-async function getServicosPorAnimal(animalId) {
+async function getServicosPorAnimal(proprietarioId) {
   try {
     return await Servico.findAll({
-      where: {
-        animalId,
+      include: {
+        model: Animal,
+        where: { proprietarioId },
       },
-      include: [
-        {
-          model: Animal,
-        },
-      ],
     });
   } catch (err) {
     throw err;
@@ -70,7 +66,7 @@ async function updateServico(servico) {
 
 export default {
   insertServico,
-  getAnimais,
+  getServicos,
   getServicosPorAnimal,
   getServico,
   updateServico,
