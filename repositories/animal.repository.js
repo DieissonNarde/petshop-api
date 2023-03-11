@@ -19,7 +19,7 @@ async function getAnimais() {
 
 async function getAnimal(id) {
   try {
-    return await Animal.findByPk(id);
+    return await Animal.findByPk(id, { raw: true });
   } catch (err) {
     throw err;
   }

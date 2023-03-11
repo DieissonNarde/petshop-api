@@ -46,7 +46,7 @@ async function updateProprietario(req, res, next) {
   try {
     let proprietario = req.body;
     if (
-      !proprietario.proprietario_id ||
+      !proprietario.proprietarioId ||
       !proprietario.nome ||
       !proprietario.telefone
     ) {
