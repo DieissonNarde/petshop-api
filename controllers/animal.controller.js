@@ -16,7 +16,7 @@ async function createAnimal(req, res, next) {
 
 async function getAnimais(req, res, next) {
   try {
-    res.send(await AnimalService.getAnimais(req.query.animalId));
+    res.send(await AnimalService.getAnimais(req.query.proprietarioId));
     logger.info('GET /animal');
   } catch (err) {
     next(err);

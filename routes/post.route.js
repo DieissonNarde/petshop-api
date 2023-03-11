@@ -7,6 +7,6 @@ router.post('/', PostController.createPost);
 router.get('/', PostController.getPosts);
 router.delete('/:id', PostController.deletePost);
 router.put('/', PostController.updatePost);
-router.post('/comentario', ProductController.createComentario);
+router.post('/comentario', PostController.createComentario);
 
 export default router;

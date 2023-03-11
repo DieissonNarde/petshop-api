@@ -31,11 +31,6 @@ async function getAnimaisPorProprietario(proprietarioId) {
       where: {
         proprietarioId,
       },
-      include: [
-        {
-          model: Proprietario,
-        },
-      ],
     });
   } catch (err) {
     throw err;

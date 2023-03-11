@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import ComentarioSchema from './review.schema.js';
+import ComentarioSchema from './comentario.schema.js';
 
 const PostSchema = new mongoose.Schema(
   {
