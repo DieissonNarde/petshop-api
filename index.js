@@ -3,6 +3,8 @@ import cors from 'cors';
 import winston from 'winston';
 import proprietariosRouter from './routes/proprietario.route.js';
 import animaisRouter from './routes/animal.route.js';
+import servicosRouter from './routes/servico.route.js';
+import postsRouter from './routes/post.route.js';
 
 const { combine, timestamp, label, printf } = winston.format;
 const myFormat = printf(({ level, message, label, timestamp }) => {
@@ -23,6 +25,8 @@ app.use(express.json());
 app.use(cors());
 app.use('/proprietario', proprietariosRouter);
 app.use('/animal', animaisRouter);
+app.use('/servico', servicosRouter);
+app.use('/post', postsRouter);
 
 app.use((err, req, res, next) => {
   logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);
