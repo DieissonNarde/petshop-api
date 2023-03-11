@@ -15,7 +15,7 @@ const Servico = db.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    value: {
+    valor: {
       type: Sequelize.NUMBER,
       allowNull: false,
     },

@@ -28,7 +28,7 @@ async function deleteProprietario(id) {
   try {
     return await Proprietario.destroy({
       where: {
-        productId: id,
+        proprietarioId: id,
       },
     });
   } catch (err) {

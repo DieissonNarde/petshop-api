@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import db from '../repositories/db.js';
 
 const Proprietario = db.define(
-  'animais',
+  'proprietarios',
   {
     proprietarioId: {
       type: Sequelize.INTEGER,
