@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema(
     comentarios: [ComentarioSchema],
   },
   {
-    collection: 'post',
+    collection: 'posts',
   }
 );
 

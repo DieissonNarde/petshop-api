@@ -5,7 +5,7 @@ async function createPost(post) {
 }
 
 async function getPosts() {
-  return await PostRepository.getPost();
+  return await PostRepository.getPosts();
 }
 
 async function updatePost(post) {
