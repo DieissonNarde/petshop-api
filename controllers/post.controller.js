@@ -28,8 +28,8 @@ async function updatePost(req, res, next) {
   try {
     let post = req.body;
 
-    if (!post.postId || !post.titulo || !post.conteudo || !post.comentarios) {
-      throw new Error('Post ID, Titulo, Conteudo e Comentarios é obrigatório.');
+    if (!post.postId || !post.titulo || !post.conteudo) {
+      throw new Error('Post ID, Titulo, Conteudo é obrigatório.');
     }
     await PostService.updatePost(post);
     res.end();
@@ -41,7 +41,7 @@ async function updatePost(req, res, next) {
 
 async function deletePost(req, res, next) {
   try {
-    res.send(await PostService.deletePost(parseInt(req.params.id)));
+    res.send(await PostService.deletePost(req.params.id));
     logger.info(`DELETE /post`);
   } catch (err) {
     next(err);
@@ -50,14 +50,14 @@ async function deletePost(req, res, next) {
 
 async function createComentario(req, res, next) {
   try {
-    let post = req.body;
+    let comentario = req.body;
 
-    if (!post.postId) {
+    if (!comentario.postId) {
       throw new Error('Post ID é obrigatório.');
     }
-    await PostService.createPost(post);
+    await PostService.createComentario(comentario);
     res.end();
-    logger.info(`POST /post - ${JSON.stringify(post)}`);
+    logger.info(`POST /post - ${JSON.stringify(comentario)}`);
   } catch (err) {
     next(err);
   }

@@ -26,7 +26,7 @@ async function getPost(postId) {
   try {
     const mongoose = await connect();
     const Post = mongoose.model('Post', PostSchema);
-    return await Post.findOne({ _id: ObjectId(postId) }).exec();
+    return await Post.findOne({ _id: postId }).exec();
   } catch (err) {
     throw err;
   }
@@ -36,16 +36,29 @@ async function updatePost(post) {
   try {
     const mongoose = await connect();
     const Post = mongoose.model('Post', PostSchema);
-    await Post.findOneAndUpdate({ productId: post.productId }, post);
+    await Post.findOneAndUpdate({ _id: post.postId }, post);
   } catch (err) {
     throw err;
   }
 }
 
-async function createComentario(comentario, postId) {
+async function deletePost(postId) {
   try {
-    const post = await getPost(postId);
-    post.comentarios.push(comentario);
+    const mongoose = await connect();
+    const Post = mongoose.model('Post', PostSchema);
+    return await Post.deleteOne({ _id: postId });
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function createComentario(comentario) {
+  try {
+    const post = await getPost(comentario.postId);
+    post.comentarios.push({
+      nome: comentario.nome,
+      conteudo: comentario.conteudo,
+    });
     await updatePost(post);
   } catch (err) {
     throw err;
@@ -56,5 +69,6 @@ export default {
   createPost,
   updatePost,
   getPosts,
+  deletePost,
   createComentario,
 };
