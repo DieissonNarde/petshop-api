@@ -1,5 +1,4 @@
 import Animal from '../models/animal.model.js';
-import Proprietario from '../models/proprietario.model.js';
 
 async function insertAnimal(animal) {
   try {
